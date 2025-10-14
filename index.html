@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculation Dashboard</title>
+    <title>Lighting Calculator</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter -->
@@ -31,7 +31,7 @@
     <div class="w-full max-w-4xl mx-auto">
         <header class="text-center mb-8">
             <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Lighting Calculator</h1>
-            <p class="text-gray-600 dark:text-gray-400 mt-2">Enter quantities below to see the results.</p>
+            <!-- <p class="text-gray-600 dark:text-gray-400 mt-2">Enter quantities below.</p> -->
         </header>
 
         <main class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8">
@@ -105,10 +105,9 @@
         };
 
         const resultOutputs = {
-            sum: document.getElementById('result-sum'),
-            avg: document.getElementById('result-avg'),
-            max: document.getElementById('result-max'),
-            custom: document.getElementById('result-custom'),
+            number: document.getElementById('result-number'),
+            weight: document.getElementById('result-weight'),
+            power: document.getElementById('result-power'),
         };
 
         // --- CALCULATION LOGIC ---
@@ -126,15 +125,16 @@
           
 
             // Total number of fixtures
-            const totalSum = values.a + values.b + values.c + values.d + values.e + values.f;
+            const number = values.a + values.b + values.c + values.d + values.e + values.f;
+            // Total power consumption in Amps
             const power = (values.a * 1.44) + (values.b * 1.88) + (values.c * 0.75) + (values.d * 4.54) + (values.e * 2.85) + (values.f * 1.33);
+            // total weight in pounds
             const weight = (values.a * 18.3) + (values.b * 19.8) + (values.c * 8.3) + (values.d * 34) + (values.e * 22.8) + (values.f * 18.6);
 
             // --- DISPLAY RESULTS ---
-            resultOutputs.sum.textContent = totalSum.toLocaleString();
-            resultOutputs.avg.textContent = weightedAverage.toFixed(2);
-            resultOutputs.max.textContent = maxQuantity.toLocaleString();
-            resultOutputs.custom.textContent = customFormula.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            resultOutputs.total.textContent = total;
+            resultOutputs.power.textContent = power.toFixed(2);
+            resultOutputs.weight.textContent = weight.toFixed(2);
         }
 
         // --- EVENT LISTENERS ---
