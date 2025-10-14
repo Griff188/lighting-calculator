@@ -1,140 +1,165 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-	<script src=
-"https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.js"
-		integrity=
-"sha512-BbVEDjbqdN3Eow8+empLMrJlxXRj5nEitiCAK5A1pUr66+jLVejo3PmjIaucRnjlB0P9R3rBUs3g5jXc8ti+fQ=="
-		crossorigin="anonymous"
-		referrerpolicy="no-referrer"></script>
-	<script src=
-"https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.min.js"
-		integrity=
-"sha512-iphNRh6dPbeuPGIrQbCdbBF/qcqadKWLa35YPVfMZMHBSI6PLJh1om2xCTWhpVpmUyb4IvVS9iYnnYMkleVXLA=="
-		crossorigin="anonymous"
-		referrerpolicy="no-referrer"></script>
-	<!-- for styling -->
-	<style>
-		table {
-			border: 1px solid black;
-			margin-left: auto;
-			margin-right: auto;
-		}
-
-		input[type="button"] {
-			width: 100%;
-			padding: 20px 40px;
-			background-color: green;
-			color: white;
-			font-size: 24px;
-			font-weight: bold;
-			border: none;
-			border-radius: 5px;
-		}
-
-		input[type="text"] {
-			padding: 20px 30px;
-			font-size: 24px;
-			font-weight: bold;
-			border: none;
-			border-radius: 5px;
-			border: 2px solid black;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculation Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styling for number input arrows */
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
 </head>
-<!-- create table -->
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen flex items-center justify-center p-4">
 
-<body>
-	<table id="calcu">
-		<tr>
-			<td colspan="3"><input type="text" id="result"></td>
-			<!-- clr() function will call clr to clear all value -->
-			<td><input type="button" value="c" onclick="clr()" /> </td>
-		</tr>
-		<tr>
-			<!-- create button and assign value to each button -->
-			<!-- dis("1") will call function dis to display value -->
-			<td><input type="button" value="1" onclick="dis('1')"
-						onkeydown="myFunction(event)"> </td>
-			<td><input type="button" value="2" onclick="dis('2')"
-						onkeydown="myFunction(event)"> </td>
-			<td><input type="button" value="3" onclick="dis('3')"
-						onkeydown="myFunction(event)"> </td>
-			<td><input type="button" value="/" onclick="dis('/')"
-						onkeydown="myFunction(event)"> </td>
-		</tr>
-		<tr>
-			<td><input type="button" value="4" onclick="dis('4')"
-						onkeydown="myFunction(event)"> </td>
-			<td><input type="button" value="5" onclick="dis('5')"
-						onkeydown="myFunction(event)"> </td>
-			<td><input type="button" value="6" onclick="dis('6')"
-						onkeydown="myFunction(event)"> </td>
-			<td><input type="button" value="*" onclick="dis('*')"
-						onkeydown="myFunction(event)"> </td>
-		</tr>
-		<tr>
-			<td><input type="button" value="7" onclick="dis('7')"
-						onkeydown="myFunction(event)"> </td>
-			<td><input type="button" value="8" onclick="dis('8')"
-						onkeydown="myFunction(event)"> </td>
-			<td><input type="button" value="9" onclick="dis('9')"
-						onkeydown="myFunction(event)"> </td>
-			<td><input type="button" value="-" onclick="dis('-')"
-						onkeydown="myFunction(event)"> </td>
-		</tr>
-		<tr>
-			<td><input type="button" value="0" onclick="dis('0')"
-						onkeydown="myFunction(event)"> </td>
-			<td><input type="button" value="." onclick="dis('.')"
-						onkeydown="myFunction(event)"> </td>
-			<!-- solve function call function solve to evaluate value -->
-			<td><input type="button" value="=" onclick="solve()"> </td>
+    <div class="w-full max-w-4xl mx-auto">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Calculation Dashboard</h1>
+            <p class="text-gray-600 dark:text-gray-400 mt-2">Enter quantities below to see the results.</p>
+        </header>
 
-			<td><input type="button" value="+" onclick="dis('+')"
-						onkeydown="myFunction(event)"> </td>
-		</tr>
-	</table>
+        <main class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8">
+            <!-- Input Section -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Item A -->
+                <div class="space-y-2">
+                    <label for="itemA" class="text-sm font-medium text-gray-700 dark:text-gray-300">Quantity of Item A</label>
+                    <input type="number" id="itemA" value="0" min="0" class="w-full p-3 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                </div>
+                <!-- Item B -->
+                <div class="space-y-2">
+                    <label for="itemB" class="text-sm font-medium text-gray-700 dark:text-gray-300">Quantity of Item B</label>
+                    <input type="number" id="itemB" value="0" min="0" class="w-full p-3 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                </div>
+                <!-- Item C -->
+                <div class="space-y-2">
+                    <label for="itemC" class="text-sm font-medium text-gray-700 dark:text-gray-300">Quantity of Item C</label>
+                    <input type="number" id="itemC" value="0" min="0" class="w-full p-3 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                </div>
+                <!-- Item D -->
+                <div class="space-y-2">
+                    <label for="itemD" class="text-sm font-medium text-gray-700 dark:text-gray-300">Quantity of Item D</label>
+                    <input type="number" id="itemD" value="0" min="0" class="w-full p-3 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                </div>
+                <!-- Item E -->
+                <div class="space-y-2">
+                    <label for="itemE" class="text-sm font-medium text-gray-700 dark:text-gray-300">Quantity of Item E</label>
+                    <input type="number" id="itemE" value="0" min="0" class="w-full p-3 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                </div>
+                <!-- Item F -->
+                <div class="space-y-2">
+                    <label for="itemF" class="text-sm font-medium text-gray-700 dark:text-gray-300">Quantity of Item F</label>
+                    <input type="number" id="itemF" value="0" min="0" class="w-full p-3 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                </div>
+            </div>
 
-	<script>
-		// Function that display value
-		function dis(val) {
-			document.getElementById("result").value += val
-		}
+            <!-- Divider -->
+            <hr class="border-gray-200 dark:border-gray-700 my-8">
 
-		function myFunction(event) {
-			if (event.key == '0' || event.key == '1'
-				|| event.key == '2' || event.key == '3'
-				|| event.key == '4' || event.key == '5'
-				|| event.key == '6' || event.key == '7'
-				|| event.key == '8' || event.key == '9'
-				|| event.key == '+' || event.key == '-'
-				|| event.key == '*' || event.key == '/')
-				document.getElementById("result").value += event.key;
-		}
+            <!-- Results Section -->
+            <div>
+                <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Results</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-lg">
+                    <div class="bg-blue-50 dark:bg-blue-900/50 p-4 rounded-lg flex justify-between items-center">
+                        <span class="font-medium text-blue-800 dark:text-blue-200">Total Sum</span>
+                        <span id="result-sum" class="font-bold text-blue-900 dark:text-blue-100">0</span>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/50 p-4 rounded-lg flex justify-between items-center">
+                        <span class="font-medium text-green-800 dark:text-green-200">Weighted Average</span>
+                        <span id="result-avg" class="font-bold text-green-900 dark:text-green-100">0.00</span>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/50 p-4 rounded-lg flex justify-between items-center">
+                        <span class="font-medium text-purple-800 dark:text-purple-200">Max Quantity</span>
+                        <span id="result-max" class="font-bold text-purple-900 dark:text-purple-100">0</span>
+                    </div>
+                    <div class="bg-yellow-50 dark:bg-yellow-900/50 p-4 rounded-lg flex justify-between items-center">
+                        <span class="font-medium text-yellow-800 dark:text-yellow-200">Custom Formula</span>
+                        <span id="result-custom" class="font-bold text-yellow-900 dark:text-yellow-100">0</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
 
-		let cal = document.getElementById("calcu");
-		cal.onkeyup = function (event) {
-			if (event.keyCode === 13) {
-				console.log("Enter");
-				let x = document.getElementById("result").value
-				console.log(x);
-				solve();
-			}
-		}
+    <script>
+        // --- DOM ELEMENT SELECTION ---
+        const itemInputs = {
+            a: document.getElementById('itemA'),
+            b: document.getElementById('itemB'),
+            c: document.getElementById('itemC'),
+            d: document.getElementById('itemD'),
+            e: document.getElementById('itemE'),
+            f: document.getElementById('itemF'),
+        };
 
-		// Function that evaluates the digit and return result
-		function solve() {
-			let x = document.getElementById("result").value
-			let y = math.evaluate(x)
-			document.getElementById("result").value = y
-		}
+        const resultOutputs = {
+            sum: document.getElementById('result-sum'),
+            avg: document.getElementById('result-avg'),
+            max: document.getElementById('result-max'),
+            custom: document.getElementById('result-custom'),
+        };
 
-		// Function that clear the display
-		function clr() {
-			document.getElementById("result").value = ""
-		}
-	</script>
+        // --- CALCULATION LOGIC ---
+        function calculateAndDisplay() {
+            // 1. Get current values, ensuring they are numbers
+            const values = {
+                a: parseFloat(itemInputs.a.value) || 0,
+                b: parseFloat(itemInputs.b.value) || 0,
+                c: parseFloat(itemInputs.c.value) || 0,
+                d: parseFloat(itemInputs.d.value) || 0,
+                e: parseFloat(itemInputs.e.value) || 0,
+                f: parseFloat(itemInputs.f.value) || 0,
+            };
+
+            // --- !!! PLACEHOLDER MATH: REPLACE WITH YOUR EQUATIONS !!! ---
+
+            // Calculation 1: Total Sum of all items
+            const totalSum = values.a + values.b + values.c + values.d + values.e + values.f;
+
+            // Calculation 2: A weighted average (example weights)
+            const weightedSum = (values.a * 1.5) + (values.b * 0.8) + (values.c * 2.1);
+            const totalWeight = (values.a > 0 ? 1.5 : 0) + (values.b > 0 ? 0.8 : 0) + (values.c > 0 ? 2.1 : 0);
+            const weightedAverage = totalWeight > 0 ? weightedSum / totalWeight : 0;
+            
+            // Calculation 3: Maximum quantity entered
+            const maxQuantity = Math.max(values.a, values.b, values.c, values.d, values.e, values.f);
+
+            // Calculation 4: A custom formula (e.g., (A + B) / (C + 1))
+            const customFormula = (values.a + values.b) / (values.c + 1);
+
+            // --- DISPLAY RESULTS ---
+            resultOutputs.sum.textContent = totalSum.toLocaleString();
+            resultOutputs.avg.textContent = weightedAverage.toFixed(2);
+            resultOutputs.max.textContent = maxQuantity.toLocaleString();
+            resultOutputs.custom.textContent = customFormula.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        // --- EVENT LISTENERS ---
+        // Add an 'input' event listener to each input field
+        Object.values(itemInputs).forEach(input => {
+            input.addEventListener('input', calculateAndDisplay);
+        });
+
+        // --- INITIAL CALCULATION ---
+        // Run the calculation once on page load to initialize the results
+        document.addEventListener('DOMContentLoaded', calculateAndDisplay);
+
+    </script>
 </body>
 </html>
