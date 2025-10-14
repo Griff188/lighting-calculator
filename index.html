@@ -30,7 +30,7 @@
 
     <div class="w-full max-w-4xl mx-auto">
         <header class="text-center mb-8">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Calculation Dashboard</h1>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Lighting Calculator</h1>
             <p class="text-gray-600 dark:text-gray-400 mt-2">Enter quantities below to see the results.</p>
         </header>
 
@@ -39,32 +39,32 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                 <!-- Item A -->
                 <div class="space-y-2">
-                    <label for="itemA" class="text-sm font-medium text-gray-700 dark:text-gray-300">Quantity of Item A</label>
+                    <label for="itemA" class="text-sm font-medium text-gray-700 dark:text-gray-300">ETC Source 4 LED Series 2 (lustr)</label>
                     <input type="number" id="itemA" value="0" min="0" class="w-full p-3 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
                 </div>
                 <!-- Item B -->
                 <div class="space-y-2">
-                    <label for="itemB" class="text-sm font-medium text-gray-700 dark:text-gray-300">Quantity of Item B</label>
+                    <label for="itemB" class="text-sm font-medium text-gray-700 dark:text-gray-300">Chauvet Ovation E-910FC</label>
                     <input type="number" id="itemB" value="0" min="0" class="w-full p-3 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
                 </div>
                 <!-- Item C -->
                 <div class="space-y-2">
-                    <label for="itemC" class="text-sm font-medium text-gray-700 dark:text-gray-300">Quantity of Item C</label>
+                    <label for="itemC" class="text-sm font-medium text-gray-700 dark:text-gray-300">ETC ColorSource PAR</label>
                     <input type="number" id="itemC" value="0" min="0" class="w-full p-3 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
                 </div>
                 <!-- Item D -->
                 <div class="space-y-2">
-                    <label for="itemD" class="text-sm font-medium text-gray-700 dark:text-gray-300">Quantity of Item D</label>
+                    <label for="itemD" class="text-sm font-medium text-gray-700 dark:text-gray-300">Chauvet Rogue R3E Spot</label>
                     <input type="number" id="itemD" value="0" min="0" class="w-full p-3 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
                 </div>
                 <!-- Item E -->
                 <div class="space-y-2">
-                    <label for="itemE" class="text-sm font-medium text-gray-700 dark:text-gray-300">Quantity of Item E</label>
+                    <label for="itemE" class="text-sm font-medium text-gray-700 dark:text-gray-300">Chauvet Rogue R2X Wash</label>
                     <input type="number" id="itemE" value="0" min="0" class="w-full p-3 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
                 </div>
                 <!-- Item F -->
                 <div class="space-y-2">
-                    <label for="itemF" class="text-sm font-medium text-gray-700 dark:text-gray-300">Quantity of Item F</label>
+                    <label for="itemF" class="text-sm font-medium text-gray-700 dark:text-gray-300">Chauvet COLORado Batten 72X</label>
                     <input type="number" id="itemF" value="0" min="0" class="w-full p-3 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
                 </div>
             </div>
@@ -77,20 +77,16 @@
                 <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Results</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-lg">
                     <div class="bg-blue-50 dark:bg-blue-900/50 p-4 rounded-lg flex justify-between items-center">
-                        <span class="font-medium text-blue-800 dark:text-blue-200">Total Sum</span>
+                        <span class="font-medium text-blue-800 dark:text-blue-200">Number of Fixtures</span>
                         <span id="result-sum" class="font-bold text-blue-900 dark:text-blue-100">0</span>
                     </div>
                     <div class="bg-green-50 dark:bg-green-900/50 p-4 rounded-lg flex justify-between items-center">
-                        <span class="font-medium text-green-800 dark:text-green-200">Weighted Average</span>
+                        <span class="font-medium text-green-800 dark:text-green-200">Power (Amps)</span>
                         <span id="result-avg" class="font-bold text-green-900 dark:text-green-100">0.00</span>
                     </div>
                     <div class="bg-purple-50 dark:bg-purple-900/50 p-4 rounded-lg flex justify-between items-center">
-                        <span class="font-medium text-purple-800 dark:text-purple-200">Max Quantity</span>
-                        <span id="result-max" class="font-bold text-purple-900 dark:text-purple-100">0</span>
-                    </div>
-                    <div class="bg-yellow-50 dark:bg-yellow-900/50 p-4 rounded-lg flex justify-between items-center">
-                        <span class="font-medium text-yellow-800 dark:text-yellow-200">Custom Formula</span>
-                        <span id="result-custom" class="font-bold text-yellow-900 dark:text-yellow-100">0</span>
+                        <span class="font-medium text-purple-800 dark:text-purple-200">Weight (lbs)</span>
+                        <span id="result-max" class="font-bold text-purple-900 dark:text-purple-100">0.00</span>
                     </div>
                 </div>
             </div>
@@ -127,21 +123,12 @@
                 f: parseFloat(itemInputs.f.value) || 0,
             };
 
-            // --- !!! PLACEHOLDER MATH: REPLACE WITH YOUR EQUATIONS !!! ---
+          
 
-            // Calculation 1: Total Sum of all items
+            // Total number of fixtures
             const totalSum = values.a + values.b + values.c + values.d + values.e + values.f;
-
-            // Calculation 2: A weighted average (example weights)
-            const weightedSum = (values.a * 1.5) + (values.b * 0.8) + (values.c * 2.1);
-            const totalWeight = (values.a > 0 ? 1.5 : 0) + (values.b > 0 ? 0.8 : 0) + (values.c > 0 ? 2.1 : 0);
-            const weightedAverage = totalWeight > 0 ? weightedSum / totalWeight : 0;
-            
-            // Calculation 3: Maximum quantity entered
-            const maxQuantity = Math.max(values.a, values.b, values.c, values.d, values.e, values.f);
-
-            // Calculation 4: A custom formula (e.g., (A + B) / (C + 1))
-            const customFormula = (values.a + values.b) / (values.c + 1);
+            const power = (values.a * 1.44) + (values.b * 1.88) + (values.c * 0.75) + (values.d * 4.54) + (values.e * 2.85) + (values.f * 1.33);
+            const weight = (values.a * 18.3) + (values.b * 19.8) + (values.c * 8.3) + (values.d * 34) + (values.e * 22.8) + (values.f * 18.6);
 
             // --- DISPLAY RESULTS ---
             resultOutputs.sum.textContent = totalSum.toLocaleString();
