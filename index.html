@@ -95,6 +95,10 @@
                         <span class="font-medium text-purple-800 dark:text-purple-200">Weight (lbs)</span>
                         <span id="result-weight" class="font-bold text-purple-900 dark:text-purple-100">0.00</span>
                     </div>
+                    <div class="bg-purple-50 dark:bg-yellow-900/50 p-4 rounded-lg flex justify-between items-center">
+                        <span class="font-medium text-yellow-800 dark:text-yellow-200">Weight incl. pipe (lbs)</span>
+                        <span id="result-pipe" class="font-bold text-yellow-900 dark:text-yellow-100">0.00</span>
+                    </div>
                 </div>
             </div>
         </main>
@@ -115,6 +119,7 @@
             number: document.getElementById('result-number'),
             power: document.getElementById('result-power'),
             weight: document.getElementById('result-weight'),
+            pipe: document.getElementById('result-pipe'),
         };
 
         const clearButton = document.getElementById('clear-button');
@@ -137,12 +142,15 @@
             const power = (values.a * 1.44) + (values.b * 1.88) + (values.c * 0.75) + (values.d * 4.54) + (values.e * 2.85) + (values.f * 1.33);
             // total weight in pounds
             const weight = (values.a * 18.3) + (values.b * 19.8) + (values.c * 8.3) + (values.d * 34) + (values.e * 22.8) + (values.f * 18.6);
+            // total weight with pipe
+            const pipe = weight + 75;
 
             // --- DISPLAY RESULTS ---
             // **FIX**: The properties now correctly match the updated `resultOutputs` object.
             resultOutputs.number.textContent = number.toFixed(0);
             resultOutputs.power.textContent = power.toFixed(2);
             resultOutputs.weight.textContent = weight.toFixed(2);
+            resultOutputs.pipe.textContent = pipe.toFixed(2);
         }
 
         // Function to clear all input fields
